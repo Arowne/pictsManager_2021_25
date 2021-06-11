@@ -41,7 +41,6 @@ class AlbumTests(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['access'])
 
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
@@ -53,7 +52,6 @@ class AlbumTests(APITestCase):
 
     def test_create_albums_unlogin_user(self):
 
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
@@ -119,7 +117,6 @@ class AlbumTests(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['access'])
 
         # Create albums
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
@@ -135,7 +132,6 @@ class AlbumTests(APITestCase):
         self.albums_id = data[0]["public_id"]
 
         # Update albums
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "New Title",
             "description": "New post content",
@@ -155,7 +151,6 @@ class AlbumTests(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['access'])
 
         # Create albums
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
@@ -195,7 +190,6 @@ class AlbumTests(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['access'])
 
         # Create albums
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
@@ -234,7 +228,6 @@ class AlbumTests(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['access'])
 
         # Create albums
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
@@ -257,7 +250,6 @@ class AlbumTests(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['access'])
 
         # Update albums
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
@@ -277,7 +269,6 @@ class AlbumTests(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['access'])
 
         # Create albums
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
@@ -305,7 +296,6 @@ class AlbumTests(APITestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['access'])
 
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
@@ -330,7 +320,6 @@ class AlbumTests(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['access'])
 
         # Create albums
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
@@ -359,7 +348,6 @@ class AlbumTests(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + data['access'])
 
         # Create albums
-        image_file = open('./albums/data/data.png', 'rb')
         data = {
             "title": "Title",
             "description": "Album content",
