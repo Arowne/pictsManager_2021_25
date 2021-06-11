@@ -8,6 +8,7 @@ from django.core.validators import RegexValidator, FileExtensionValidator
 
 from .models import Album
 from user.models import User
+from images.models import Image
 # Create the form class.
 
 
@@ -17,6 +18,13 @@ class ListUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['email', 'first_name', 'last_name']
 
+class ListImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Image
+        fields = ['public_id', 'image']
+
+        
 class CreateAlbumSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
@@ -50,12 +58,19 @@ class DeleteAlbumSerializer(serializers.ModelSerializer):
 
 
 class RetrieveAlbumSerializer(serializers.ModelSerializer):
-
+    
+    def get_images(self, obj):
+        data = obj.image_set.filter(is_active=True)
+        print(data)
+        return data
+    
     user = ListUserSerializer(many=False)
+    images = ListImageSerializer(source="image_set", many=True)
 
+    
     class Meta:
         model = Album
-        fields = ["public_id", "title", "description", "user"]
+        fields = ["public_id", "title", "description", "user", "images"]
 
     
 class RetrieveAllAlbumSerializer(serializers.ModelSerializer):

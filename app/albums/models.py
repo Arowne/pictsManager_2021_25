@@ -11,7 +11,7 @@ from user.models import User
 class Album(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     
-    public_id = models.UUIDField(default=uuid.uuid4, editable=False, blank=False)
+    public_id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, blank=False)
     title = models.CharField(max_length=200, blank=False, null=False)
     description = models.CharField(max_length=10000, blank=False, null=False)
     
