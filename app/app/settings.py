@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'rest_framework',
     'corsheaders',
-    'posts',
+    'images',
+    'albums',
     'user',
 ]
 
