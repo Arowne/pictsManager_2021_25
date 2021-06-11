@@ -50,6 +50,8 @@ jobs:
           cd ./app/
           python manage.py makemigrations user
           python manage.py migrate
-          python manage.py makemigrations posts
+          python manage.py makemigrations tags
+          python manage.py makemigrations albums
+          python manage.py makemigrations images
           python manage.py migrate
           python manage.py test
