@@ -13,7 +13,7 @@ from tags.models import Tag
 class Image(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     
-    public_id = models.UUIDField(default=uuid.uuid4, editable=False, blank=False)
+    public_id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, blank=False)
     image = models.ImageField(upload_to='media/')
     
     # State
@@ -23,7 +23,7 @@ class Image(models.Model):
     
     # User
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    album = models.ForeignKey(Album, on_delete=models.SET_NULL, null=True)
+    album = models.ForeignKey(Album, on_delete=models.SET_NULL, to_field="public_id", null=True)
     tags = models.ManyToManyField(Tag)
     
 class PostAdmin(admin.ModelAdmin):
