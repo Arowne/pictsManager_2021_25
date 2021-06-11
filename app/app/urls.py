@@ -29,4 +29,5 @@ urlpatterns = [
     path('user', include('user.urls')),
     path('images', include('images.urls')),
     path('albums', include('albums.urls')),
+    path('tags', include('tags.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
