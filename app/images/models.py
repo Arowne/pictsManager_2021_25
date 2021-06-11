@@ -6,6 +6,8 @@ from django.core.validators import MaxValueValidator
 from django.contrib.postgres.fields import ArrayField
 
 from user.models import User
+from albums.models import Album
+from tags.models import Tag
 
 
 class Image(models.Model):
@@ -21,7 +23,9 @@ class Image(models.Model):
     
     # User
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-
+    album = models.ForeignKey(Album, on_delete=models.SET_NULL, null=True)
+    tags = models.ManyToManyField(Tag)
+    
 class PostAdmin(admin.ModelAdmin):
     list_display = (
         "id",
