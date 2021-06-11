@@ -30,15 +30,32 @@ class CreateImageSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = self.context['user']
         validated_data["is_active"] = True
-        
+        tags = validated_data['tags']
+        del validated_data['tags']
+            
         image = Image.objects.create(user=user, **validated_data)
+        image.save()
+        
+        for tag in tags:
+            tag = Tag.objects.get(public_id=tag)
+            image.tags.add(tag)
+            
         return image
 
+    def validate(self, validated_data):
+        for tag in validated_data['tags']:
+            try:
+                tag = Tag.objects.get(public_id=tag)
+            except: 
+                raise ValidationError('Tag is not valid')
+        return validated_data
+            
     image = serializers.ImageField()
+    tags = serializers.ListField()
     
     class Meta:
         model = Image
-        fields = ["album", "image"]
+        fields = ["album", "image", "tags"]
 
 
 class UpdateImageSerializer(serializers.ModelSerializer):
@@ -65,7 +82,7 @@ class DeleteImageSerializer(serializers.ModelSerializer):
 class RetrieveImageSerializer(serializers.ModelSerializer):
 
     user = ListUserSerializer(many=False)
-    tags = ListTagsSerializer(source="tag_set", many=True)
+    tags = ListTagsSerializer(many=True)
 
     class Meta:
         model = Image
