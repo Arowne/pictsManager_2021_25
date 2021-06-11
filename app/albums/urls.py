@@ -15,12 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import PostCreate, PostList, PostRetriveUpdateDestroy, PostsLike, PostsUnlike
+from .views import AlbumCreate, AlbumList, AlbumRetriveUpdateDestroy
 
 urlpatterns = [
-    path('', PostCreate.as_view()),
-    path('all', PostList.as_view()),
-    path('<uuid:public_id>', PostRetriveUpdateDestroy.as_view()),
-    path('like/<uuid:public_id>', PostsLike.as_view()),
-    path('unlike/<uuid:public_id>', PostsUnlike.as_view())
+    path('', AlbumCreate.as_view()),
+    path('/all', AlbumList.as_view()),
+    path('/<uuid:public_id>', AlbumRetriveUpdateDestroy.as_view()),
 ]
