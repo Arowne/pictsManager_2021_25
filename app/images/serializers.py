@@ -62,14 +62,32 @@ class UpdateImageSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         validated_data["is_active"] = True
+        tags = validated_data['tags']
+        del validated_data['tags']
+        
         image = instance.update(**validated_data)
+        
+        instance[0].tags.clear()
+           
+        for tag in tags:
+            tag = Tag.objects.get(public_id=tag)
+            instance[0].tags.add(tag)
+            
         return image
     
-    image = serializers.ImageField()
+    def validate(self, validated_data):
+        for tag in validated_data['tags']:
+            try:
+                tag = Tag.objects.get(public_id=tag)
+            except: 
+                raise ValidationError('Tag is not valid')
+        return validated_data
+    
+    tags = serializers.ListField()
     
     class Meta:
         model = Image
-        fields = ["image"]
+        fields = ["tags"]
 
 
 class DeleteImageSerializer(serializers.ModelSerializer):
