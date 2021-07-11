@@ -1,0 +1,15 @@
+---
+application:
+  name: "pictsmanager-2021-25"
+  project: "FirstProject"
+  organization: "QoveryCommunity"
+databases:
+- type: "POSTGRESQL"
+  name: "postgres"
+  version: "12"
+routers:
+- name: "main-pictsmanager-2021-25"
+  routes:
+  - application_name: "pictsmanager-2021-25"
+    paths:
+    - "/*"
